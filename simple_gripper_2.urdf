@@ -4,6 +4,7 @@
       <pose>-0.15 0.0 0.5 0 0 0</pose>
       <inertial>
         <mass value = "10"/>
+ 	<origin xyz="0.0 0 0.1" rpy=" 0 0 0"/><inertia ixx="0.5" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="0.1"/>
       </inertial>
       <collision name="collision">
         <geometry>
@@ -31,6 +32,7 @@
       <pose>0.0 0.0 0.05 0 0 0</pose>
       <inertial>
         <mass value = "0.5"/>
+	<origin xyz="0.0 0 0.1" rpy=" 0 0 0"/><inertia ixx="0.5" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="0.1"/>
       </inertial>
       <collision name="collision">
         <geometry>
@@ -58,6 +60,7 @@
       <pose>0.1 0.2 0.05 0 0 -0.78539</pose>
       <inertial>
         <mass value = "0.1"/>
+	<origin xyz="0.0 0 0.1" rpy=" 0 0 0"/><inertia ixx="0.5" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="0.1"/>
       </inertial>
       <collision name="collision">
         <geometry>
@@ -91,6 +94,7 @@
       <pose>0.336 0.3 0.05 0 0 1.5707</pose>
       <inertial>
         <mass value = "0.5"/>
+	<origin xyz="0.0 0 0.1" rpy=" 0 0 0"/><inertia ixx="0.5" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="0.1"/>
       </inertial>
       <collision name="collision">
         <geometry>
@@ -124,6 +128,7 @@
       <pose>0.1 -0.2 0.05 0 0 .78539</pose>
       <inertial>
         <mass value = "0.1"/>
+	<origin xyz="0.0 0 0.1" rpy=" 0 0 0"/><inertia ixx="0.5" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="0.1"/>
       </inertial>
       <collision name="collision">
         <geometry>
@@ -157,6 +162,8 @@
       <pose>0.336 -0.3 0.05 0 0 1.5707</pose>
       <inertial>
         <mass value = "0.1"/>
+	<origin xyz="0.0 0 0.1" rpy=" 0 0 0"/>
+	<inertia ixx="0.5" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="0.1"/>
       </inertial>
       <collision name="collision">
         <geometry>
@@ -186,39 +193,7 @@
         </geometry>
       </visual>
     </link>
-    <link name="middle_finger">
-      <pose>0.1 0 0.1 0 0 .78539</pose>
-      <inertial>
-        <mass value = "0.1"/>
-      </inertial>
-      <collision name="collision">
-        <geometry>
-          <box size = "
-            0.1 0.3 0.1
-          " />
-        </geometry>
-        <surface>
-          <friction>
-            <ode>
-              <mu>0.1</mu>
-              <mu2>0</mu2>
-            </ode>
-          </friction>
-          <contact>
-            <ode>
-              <max_vel>0.0</max_vel>
-            </ode>
-          </contact>
-        </surface>
-      </collision>
-      <visual name="visual">
-        <geometry>
-          <box size = "
-            0.1 0.3 0.1
-          " />
-        </geometry>
-      </visual>
-    </link>
+    
     <joint name="palm_left_finger" type="revolute">
      
       		<child link="left_finger"/>
