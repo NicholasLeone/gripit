@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+	
+<model name="irobot_hand">
+    <include>
+	<uri>model://irobot_hand</uri>
+ <plugin name="controller" filename="libcontroller.so"/>
+
+    </include>
+ </model>
+    <!-- reference to your plugin -->
+    <plugin name="iRobotHand" filename="libiRobotHand.so"/>
+  
+  </world>
+</sdf>

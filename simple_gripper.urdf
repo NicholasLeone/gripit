@@ -1,0 +1,52 @@
+<robot name="simple_gripper">
+	<link name="palm" />
+	<link name="riser" />
+	<link name="left_finger" />
+	<link name="left_finger_tip" />
+	<link name="right_finger" />
+	<link name="right_finger_tip" />
+
+	<joint name="palm_left_finger" type="revolute">
+     
+      		<child link="left_finger"/>
+      		<parent link="palm"/>
+		<origin xyz = "0 -0.15 0"/>
+      		<axis xyz="0 0 1"/>
+        	<limit effort="1000.0" lower="-0.8" upper="0.8" velocity="0.5"/>  		
+        </joint>
+	
+	<joint name="left_finger_tip" type="revolute">
+     
+      		<child link="left_finger_tip"/>
+      		<parent link="left_finger"/>
+		<origin xyz = "0 0.1 0"/>
+      		<axis xyz="0 0 1"/>
+        	<limit effort="1000.0" lower="-0.8" upper="0.8" velocity="0.5"/>  		
+        </joint>
+
+
+	<joint name="palm_right_finger" type="revolute">
+     
+      		<child link="right_finger"/>
+      		<parent link="palm"/>
+		<origin xyz = "0 0.15 0"/>
+      		<axis xyz="0 0 1"/>
+        	<limit effort="1000.0" lower="-0.8" upper="0.8" velocity="0.5"/>  		
+        </joint>
+	<joint name="right_finger_tip" type="revolute">
+     
+      		<child link="right_finger_tip"/>
+      		<parent link="right_finger"/>
+      		<axis xyz="0 0 1"/>
+        	<limit effort="1000.0" lower="-0.8" upper="0.8" velocity="0.5"/>  		
+        </joint>
+	<joint name="palm_riser" type="prismatic">
+     
+      		<child link="palm"/>
+      		<parent link="riser"/>
+		<origin xyz = "0 0.1 0"/>
+      		<axis xyz="0 0 1"/>
+        	<limit effort="1000.0" lower="0" upper="0.9" velocity="0.5"/>  		
+        </joint>
+	
+</robot>

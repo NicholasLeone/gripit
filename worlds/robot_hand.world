@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+
+    <physics name="ode_2000iters" type="dart" default="true">
+	<dart>
+		<solver>
+			<solver_type>dantzig</solver_type>
+		</solver>
+	</dart>
+	<real_time_update_rate>2000</real_time_update_rate>
+      
+	<!--ode>
+        <solver>
+          <type>quick</type>
+          <iters>2000</iters>
+        </solver>
+      </ode-->
+    </physics>
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- A testing model that includes the Velodyne sensor model -->
+    <model name="irobot_hand_nick">
+      <include>
+        <uri>model://simple_gripper</uri>
+      </include>
+
+      <!-- Attach the plugin to this model -->
+      <plugin name="irobot_hand_controller" filename="libirobot_hand_controller.so">
+         <link>simple_gripper::left_finger</link>
+          <joint>simple_gripper::palm_left_finger</joint>
+      </plugin>
+    </model>
+
+  </world>
+</sdf>
