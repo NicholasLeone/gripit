@@ -1,0 +1,13 @@
+controller_list:
+  - name: fake_simple_gripper_base_controller
+    joints:
+      - simple_gripper__palm_riser
+  - name: fake_simple_gripper_gripper_controller
+    joints:
+      - simple_gripper__palm_riser
+      - simple_gripper__palm_left_finger
+      - simple_gripper__left_finger_tip
+      - simple_gripper__palm_middle_finger
+      - simple_gripper__middle_finger_tip
+      - simple_gripper__palm_right_finger
+      - simple_gripper__right_finger_tip

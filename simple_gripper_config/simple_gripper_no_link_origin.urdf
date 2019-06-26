@@ -1,0 +1,213 @@
+<?xml version="1.0" ?>
+<robot name="simple_gripper">
+  <joint name="simple_gripper__palm_left_finger" type="revolute">
+    <parent link="simple_gripper__palm"/>
+    <child link="simple_gripper__left_finger"/>
+    <origin rpy="0       0      -0.78539" xyz="-1.00606  1.09393  0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
+  </joint>
+  <joint name="simple_gripper__left_finger_tip" type="revolute">
+    <parent link="simple_gripper__left_finger"/>
+    <child link="simple_gripper__left_finger_tip"/>
+    <origin rpy="0      0      2.35609" xyz="1.02545 1.31688 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
+  </joint>
+  <joint name="simple_gripper__palm_right_finger" type="revolute">
+    <parent link="simple_gripper__palm"/>
+    <child link="simple_gripper__right_finger"/>
+    <origin rpy="0      0      0.78539" xyz="-1.00606 -1.09393  0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
+  </joint>
+  <joint name="simple_gripper__right_finger_tip" type="revolute">
+    <parent link="simple_gripper__right_finger"/>
+    <child link="simple_gripper__right_finger_tip"/>
+    <origin rpy="0      0      0.78531" xyz="1.02546 -1.31687  0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
+  </joint>
+  
+  <joint name="simple_gripper__palm_middle_finger" type="revolute">
+    <parent link="simple_gripper__palm"/>
+    <child link="simple_gripper__middle_finger"/>
+    <origin rpy="0     0.78539    0" xyz="0 -1.00606 1.09393"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="0.0" lower="-0.8" upper="0.670362" velocity="0.0"/>
+  </joint>
+
+  <joint name="simple_gripper__middle_finger_tip" type="revolute">
+    <parent link="simple_gripper__middle_finger"/>
+    <child link="simple_gripper__middle_finger_tip"/>
+    <origin rpy="0      0.78531     0" xyz="1.02546 0 1.21687"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
+  </joint>
+
+  <joint name="simple_gripper__palm_riser" type="prismatic">
+    <parent link="simple_gripper__riser"/>
+    <child link="simple_gripper__palm"/>
+    <origin rpy="0 0 0" xyz="0   0   0.05"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0.0" lower="0.0" upper="0.9" velocity="0.0"/>
+  </joint>
+
+  <link name="simple_gripper__riser">
+    <inertial>
+      <mass value="3"/>
+      <!--origin rpy="0 0 0" xyz="0 0 0"/-->
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="simple_gripper__collision">
+      <!--origin rpy="0 0 0" xyz="-0.15  0    0.5"/-->
+      <geometry>
+        <box size="0.05 0.05 1.0"/>
+      </geometry>
+    </collision>
+    <visual name="simple_gripper__visual">
+      <!--origin rpy="0 0 0" xyz="-0.15  0    0.5"/-->
+      <geometry>
+        <box size="0.05 0.05 1.0"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="simple_gripper__palm">
+    <inertial>
+      <mass value="0.5"/>
+      <!--origin rpy="0 0 0" xyz="0 0 0"/-->
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="simple_gripper__collision">
+      <!--origin rpy="0 0 0" xyz="0 0 0"/-->
+      <geometry>
+        <box size="0.1 0.2 0.1"/>
+      </geometry>
+    </collision>
+    <visual name="simple_gripper__visual">
+      <!--origin rpy="0 0 0" xyz="0 0 0"/-->
+      <geometry>
+        <box size="0.1 0.2 0.1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="simple_gripper__left_finger">
+    <inertial>
+      <mass value="0.1"/>
+      <!--origin rpy="0 0 0" xyz="0 0 0"/-->
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="simple_gripper__collision">
+      <!--origin rpy="0 0 0" xyz="0   0.15 0"/-->
+      <geometry>
+        <box size="0.1 0.3 0.1"/>
+      </geometry>
+    </collision>
+    <visual name="simple_gripper__visual">
+      <!--origin rpy="0 0 0" xyz="0   0.15 0"/-->
+      <geometry>
+        <box size="0.1 0.3 0.1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="simple_gripper__left_finger_tip">
+    <inertial>
+      <mass value="0.5"/>
+      <!--origin rpy="0 0 0" xyz="0 0 0"/-->
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="simple_gripper__collision">
+      <!--origin rpy="0 0 0" xyz="0  -0.1  0"/-->
+      <geometry>
+        <box size="0.1 0.2 0.1"/>
+      </geometry>
+    </collision>
+    <visual name="simple_gripper__visual">
+      <!--origin rpy="0 0 0" xyz="0  -0.1  0"/-->
+      <geometry>
+        <box size="0.1 0.2 0.1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="simple_gripper__right_finger">
+    <inertial>
+      <mass value="0.1"/>
+      <!--origin rpy="0 0 0" xyz="0 0 0"/-->
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="simple_gripper__collision">
+      <!--origin rpy="0 0 0" xyz="0   -0.15  0"/-->
+      <geometry>
+        <box size="0.1 0.3 0.1"/>
+      </geometry>
+    </collision>
+    <visual name="simple_gripper__visual">
+      <!--origin rpy="0 0 0" xyz="0   -0.15  0"/-->
+      <geometry>
+        <box size="0.1 0.3 0.1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="simple_gripper__right_finger_tip">
+    <inertial>
+      <mass value="0.1"/>
+      <!--origin rpy="0 0 0" xyz="0 0 0"/-->
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="simple_gripper__collision">
+      <!--origin rpy="0 0 0" xyz="0  -0.1  0"/-->
+      <geometry>
+        <box size="0.1 0.2 0.1"/>
+      </geometry>
+    </collision>
+    <visual name="simple_gripper__visual">
+      <!--origin rpy="0 0 0" xyz="0  -0.1  0"/-->
+      <geometry>
+        <box size="0.1 0.2 0.1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="simple_gripper__middle_finger">
+    <inertial>
+      <mass value="0.1"/>
+      <!--origin rpy="0 0 0" xyz="0 0 0"/-->
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="simple_gripper__collision">
+      <!--origin rpy="0 0 0" xyz="0 0 0.1"/-->
+      <geometry>
+        <box size="0.1 0.3 0.1"/>
+      </geometry>
+    </collision>
+    <visual name="simple_gripper__visual">
+      <!--origin rpy="0 0 0" xyz="0 0 0.1"/-->
+      <geometry>
+        <box size="0.1 0.1 0.3"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="simple_gripper__middle_finger_tip">
+    <inertial>
+      <mass value="0.1"/>
+      <!--origin rpy="0 0 0" xyz="0 0 0"/-->
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="simple_gripper__collision">
+      <!--origin rpy="0 0 0" xyz="0 0 0.15"/-->
+      <geometry>
+        <box size="0.1 0.2 0.1"/>
+      </geometry>
+    </collision>
+    <visual name="simple_gripper__visual">
+      <!--origin rpy="0 0 0" xyz="0  0  0.15"/-->
+      <geometry>
+        <box size="0.1 0.1 0.2"/>
+      </geometry>
+    </visual>
+  </link>
+  <!--gazebo>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <robotNamespace>/MYROBOT</robotNamespace>
+  </plugin>
+</gazebo-->
+</robot>

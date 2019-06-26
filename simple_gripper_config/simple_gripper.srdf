@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="simple_gripper">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="simple_gripper_base">
+        <joint name="virtual_joint" />
+        <joint name="simple_gripper__palm_riser" />
+    </group>
+    <group name="simple_gripper_gripper">
+        <link name="simple_gripper__riser" />
+        <link name="simple_gripper__palm" />
+        <link name="simple_gripper__left_finger" />
+        <link name="simple_gripper__left_finger_tip" />
+        <link name="simple_gripper__middle_finger" />
+        <link name="simple_gripper__middle_finger_tip" />
+        <link name="simple_gripper__right_finger" />
+        <link name="simple_gripper__right_finger_tip" />
+    </group>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="simple_gripper_gripper" parent_link="simple_gripper__riser" group="simple_gripper_gripper" />
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="simple_gripper__riser" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="simple_gripper__left_finger" link2="simple_gripper__left_finger_tip" reason="Adjacent" />
+    <disable_collisions link1="simple_gripper__left_finger" link2="simple_gripper__middle_finger" reason="Never" />
+    <disable_collisions link1="simple_gripper__left_finger" link2="simple_gripper__palm" reason="Adjacent" />
+    <disable_collisions link1="simple_gripper__left_finger" link2="simple_gripper__right_finger" reason="Never" />
+    <disable_collisions link1="simple_gripper__left_finger" link2="simple_gripper__riser" reason="Never" />
+    <disable_collisions link1="simple_gripper__left_finger_tip" link2="simple_gripper__middle_finger" reason="Never" />
+    <disable_collisions link1="simple_gripper__left_finger_tip" link2="simple_gripper__palm" reason="Never" />
+    <disable_collisions link1="simple_gripper__left_finger_tip" link2="simple_gripper__riser" reason="Never" />
+    <disable_collisions link1="simple_gripper__middle_finger" link2="simple_gripper__middle_finger_tip" reason="Adjacent" />
+    <disable_collisions link1="simple_gripper__middle_finger" link2="simple_gripper__palm" reason="Adjacent" />
+    <disable_collisions link1="simple_gripper__middle_finger" link2="simple_gripper__right_finger" reason="Never" />
+    <disable_collisions link1="simple_gripper__middle_finger" link2="simple_gripper__right_finger_tip" reason="Never" />
+    <disable_collisions link1="simple_gripper__middle_finger" link2="simple_gripper__riser" reason="Never" />
+    <disable_collisions link1="simple_gripper__middle_finger_tip" link2="simple_gripper__palm" reason="Never" />
+    <disable_collisions link1="simple_gripper__middle_finger_tip" link2="simple_gripper__riser" reason="Never" />
+    <disable_collisions link1="simple_gripper__palm" link2="simple_gripper__right_finger" reason="Adjacent" />
+    <disable_collisions link1="simple_gripper__palm" link2="simple_gripper__right_finger_tip" reason="Never" />
+    <disable_collisions link1="simple_gripper__palm" link2="simple_gripper__riser" reason="Adjacent" />
+    <disable_collisions link1="simple_gripper__right_finger" link2="simple_gripper__right_finger_tip" reason="Adjacent" />
+    <disable_collisions link1="simple_gripper__right_finger" link2="simple_gripper__riser" reason="Never" />
+    <disable_collisions link1="simple_gripper__right_finger_tip" link2="simple_gripper__riser" reason="Never" />
+</robot>
