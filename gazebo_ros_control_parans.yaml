@@ -1,0 +1,9 @@
+# gazebo_ros_control_params.yaml
+gazebo_ros_control/pid_gains:
+  palm_left_finger: {p: 1.0, i: 0.0, d: 1.0}
+  palm_right_finger: {p: 1.0, i: 0.0, d: 1.0}
+  palm_middle_finger: {p: 1.0, i: 0.0, d: 1.0}
+  left_finger_tip: {p: 1.0, i: 0.0, d: 1.0}
+  right_finger_tip: {p: 1.0, i: 0.0, d: 1.0}
+  middle_finger_tip: {p: 1.0, i: 0.0, d: 1.0}
+  palm_riser: {p: 1.0, i: 0.0, d: 1.0}

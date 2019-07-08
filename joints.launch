@@ -1,0 +1,40 @@
+<launch>
+
+  
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+
+ 
+    
+  </include>
+
+ 
+
+  <rosparam command="load"
+            file="$(find simple_gripper_description)/config/joints.yaml"
+            ns="simple_gripper_joint_state_controller" />
+ 
+  <rosparam command="load"
+            file="$(find simple_gripper_description)/config/simple_gripper.yaml"
+	    ns="simple_gripper_controller" />
+
+  <rosparam command="load"
+	file="$(find simple_gripper_description)/config/gazebo_ros_control_params.yaml"
+	ns="gazebo_ros_control" />
+
+  <node name="simple_gripper_controller_spawner" pkg="controller_manager" type="spawner"
+    args="simple_gripper_joint_state_controller
+	  simple_gripper_controller
+	  gazebo_ros_control
+          --shutdown-timeout 3"/>
+
+  <param name="robot_description"  textfile="$(find simple_gripper_description)/urdf/simple_gripper.urdf" />
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="-z 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="30.0" />
+</node>
+</launch>

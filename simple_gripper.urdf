@@ -1,213 +1,332 @@
 <?xml version="1.0" ?>
 <robot name="simple_gripper">
-  <joint name="simple_gripper__palm_left_finger" type="revolute">
-    <parent link="simple_gripper__palm"/>
-    <child link="simple_gripper__left_finger"/>
+  <joint name="palm_left_finger" type="revolute">
+    <parent link="palm"/>
+    <child link="left_finger"/>
     <origin rpy="0       0      -0.78539" xyz="-0.00606  0.09393  0"/>
     <axis xyz="0 0 1"/>
     <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
   </joint>
-  <joint name="simple_gripper__left_finger_tip" type="revolute">
-    <parent link="simple_gripper__left_finger"/>
-    <child link="simple_gripper__left_finger_tip"/>
+
+   <transmission name="palm_left_finger_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="palm_left_finger_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="palm_left_finger">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+   </transmission>
+
+  <joint name="left_finger_tip" type="revolute">
+    <parent link="left_finger"/>
+    <child link="left_finger_tip"/>
     <origin rpy="0      0      2.35609" xyz="0.02545 0.31688 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
   </joint>
-  <joint name="simple_gripper__palm_right_finger" type="revolute">
-    <parent link="simple_gripper__palm"/>
-    <child link="simple_gripper__right_finger"/>
+
+  <transmission name="left_finger_tip_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="left_finger_tip_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="left_finger_tip">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+   </transmission>
+ 
+  <joint name="palm_right_finger" type="revolute">
+    <parent link="palm"/>
+    <child link="right_finger"/>
     <origin rpy="0      0      0.78539" xyz="-0.00606 -0.09393  0"/>
     <axis xyz="0 0 1"/>
     <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
   </joint>
-  <joint name="simple_gripper__right_finger_tip" type="revolute">
-    <parent link="simple_gripper__right_finger"/>
-    <child link="simple_gripper__right_finger_tip"/>
+
+  <transmission name="palm_right_finger_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="palm_right_finger_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="palm_right_finger">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+   </transmission>
+
+  <joint name="right_finger_tip" type="revolute">
+    <parent link="right_finger"/>
+    <child link="right_finger_tip"/>
     <origin rpy="0      0      0.78531" xyz="0.02546 -0.31687  0"/>
     <axis xyz="0 0 1"/>
     <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
   </joint>
   
-  <joint name="simple_gripper__palm_middle_finger" type="revolute">
-    <parent link="simple_gripper__palm"/>
-    <child link="simple_gripper__middle_finger"/>
+  <transmission name="right_finger_tip_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="right_finger_tip_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="right_finger_tip">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+   </transmission>
+
+  <joint name="palm_middle_finger" type="revolute">
+    <parent link="palm"/>
+    <child link="middle_finger"/>
     <origin rpy="0     0.78539    0" xyz="0 -0.00606 0.09393"/>
     <axis xyz="0 1 0"/>
-    <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
+    <limit effort="0.0" lower="-0.8" upper="0.670362" velocity="0.0"/>
   </joint>
+ 
+  <transmission name="palm_middle_finger_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="palm_middle_finger_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="palm_middle_finger">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+   </transmission>
 
-  <joint name="simple_gripper__middle_finger_tip" type="revolute">
-    <parent link="simple_gripper__middle_finger"/>
-    <child link="simple_gripper__middle_finger_tip"/>
+  <joint name="middle_finger_tip" type="revolute">
+    <parent link="middle_finger"/>
+    <child link="middle_finger_tip"/>
     <origin rpy="0      0.78531     0" xyz="0.02546 0 0.21687"/>
     <axis xyz="0 1 0"/>
     <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
   </joint>
 
-  <joint name="simple_gripper__palm_riser" type="prismatic">
-    <parent link="simple_gripper__riser"/>
-    <child link="simple_gripper__palm"/>
+  <transmission name="middle_finger_tip_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="middle_finger_tip_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="middle_finger_tip">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+   </transmission>
+
+  <joint name="palm_riser" type="prismatic">
+    <parent link="riser"/>
+    <child link="palm"/>
     <origin rpy="0 0 0" xyz="0   0   0.05"/>
     <axis xyz="0 0 1"/>
     <limit effort="0.0" lower="0.0" upper="0.9" velocity="0.0"/>
   </joint>
 
-  <link name="simple_gripper__riser">
+  <transmission name="palm_riser_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="palm_riser_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="palm_riser">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+   </transmission>
+
+  <gazebo reference="palm_riser">
+      <mu1 value="5.0"/>
+      <kp value="10.0" />
+      <kd value="1.0" />
+</gazebo>
+
+  <link name="riser">
     <inertial>
       <mass value="3"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
-    <collision name="simple_gripper__collision">
+    <collision name="collision">
       <origin rpy="0 0 0" xyz="-0.15  0    0.5"/>
       <geometry>
         <box size="0.05 0.05 1.0"/>
       </geometry>
     </collision>
-    <visual name="simple_gripper__visual">
+    <visual name="visual">
       <origin rpy="0 0 0" xyz="-0.15  0    0.5"/>
       <geometry>
         <box size="0.05 0.05 1.0"/>
       </geometry>
     </visual>
   </link>
-  <link name="simple_gripper__palm">
+  <link name="palm">
     <inertial>
       <mass value="0.5"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
-    <collision name="simple_gripper__collision">
+    <collision name="collision">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <box size="0.1 0.2 0.1"/>
       </geometry>
     </collision>
-    <visual name="simple_gripper__visual">
+    <visual name="visual">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <box size="0.1 0.2 0.1"/>
       </geometry>
     </visual>
   </link>
-  <link name="simple_gripper__left_finger">
+  <link name="left_finger">
     <inertial>
       <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
-    <collision name="simple_gripper__collision">
+    <collision name="collision">
       <origin rpy="0 0 0" xyz="0   0.15 0"/>
       <geometry>
         <box size="0.1 0.3 0.1"/>
       </geometry>
     </collision>
-    <visual name="simple_gripper__visual">
+    <visual name="visual">
       <origin rpy="0 0 0" xyz="0   0.15 0"/>
       <geometry>
         <box size="0.1 0.3 0.1"/>
       </geometry>
     </visual>
   </link>
-  <link name="simple_gripper__left_finger_tip">
+  
+   <gazebo reference="left_finger">
+      <mu1 value="5.0"/>
+      <kp value="10.0" />
+      <kd value="1.0" />
+</gazebo>
+
+  <link name="left_finger_tip">
     <inertial>
       <mass value="0.5"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
-    <collision name="simple_gripper__collision">
+    <collision name="collision">
       <origin rpy="0 0 0" xyz="0  -0.1  0"/>
       <geometry>
         <box size="0.1 0.2 0.1"/>
       </geometry>
     </collision>
-    <visual name="simple_gripper__visual">
+    <visual name="visual">
       <origin rpy="0 0 0" xyz="0  -0.1  0"/>
       <geometry>
         <box size="0.1 0.2 0.1"/>
       </geometry>
     </visual>
   </link>
-  <link name="simple_gripper__right_finger">
+
+  <gazebo reference="left_finger_tip">
+      <mu1 value="5.0"/>
+      <kp value="5.0" />
+      <kd value="0.5" />
+</gazebo>
+
+  <link name="right_finger">
     <inertial>
       <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
-    <collision name="simple_gripper__collision">
+    <collision name="collision">
       <origin rpy="0 0 0" xyz="0   -0.15  0"/>
       <geometry>
         <box size="0.1 0.3 0.1"/>
       </geometry>
     </collision>
-    <visual name="simple_gripper__visual">
+    <visual name="visual">
       <origin rpy="0 0 0" xyz="0   -0.15  0"/>
       <geometry>
         <box size="0.1 0.3 0.1"/>
       </geometry>
     </visual>
   </link>
-  <link name="simple_gripper__right_finger_tip">
+
+ <gazebo reference="right_finger">
+      <mu1 value="5.0"/>
+      <kp value="10.0" />
+      <kd value="1.0" />
+</gazebo>
+  <link name="right_finger_tip">
     <inertial>
       <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
-    <collision name="simple_gripper__collision">
+    <collision name="collision">
       <origin rpy="0 0 0" xyz="0  -0.1  0"/>
       <geometry>
         <box size="0.1 0.2 0.1"/>
       </geometry>
     </collision>
-    <visual name="simple_gripper__visual">
+    <visual name="visual">
       <origin rpy="0 0 0" xyz="0  -0.1  0"/>
       <geometry>
         <box size="0.1 0.2 0.1"/>
       </geometry>
     </visual>
   </link>
-  <link name="simple_gripper__middle_finger">
+
+  <gazebo reference="right_finger_tip">
+      <mu1 value="5.0"/>
+      <kp value="5.0" />
+      <kd value="0.5" />
+</gazebo>
+  <link name="middle_finger">
     <inertial>
       <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
-    <collision name="simple_gripper__collision">
+    <collision name="collision">
       <origin rpy="0 0 0" xyz="0 0 0.1"/>
       <geometry>
-        <box size="0.1 0.3 0.1"/>
+        <box size="0.1 0.1 0.3"/>
       </geometry>
     </collision>
-    <visual name="simple_gripper__visual">
+    <visual name="visual">
       <origin rpy="0 0 0" xyz="0 0 0.1"/>
       <geometry>
         <box size="0.1 0.1 0.3"/>
       </geometry>
     </visual>
   </link>
-  <link name="simple_gripper__middle_finger_tip">
+
+  <gazebo reference="middle_finger">
+      <mu1 value="5.0"/>
+      <kp value="10.0" />
+      <kd value="1.0" />
+</gazebo>
+  <link name="middle_finger_tip">
     <inertial>
       <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
-    <collision name="simple_gripper__collision">
+    <collision name="collision">
       <origin rpy="0 0 0" xyz="0 0 0.15"/>
       <geometry>
-        <box size="0.1 0.2 0.1"/>
+        <box size="0.1 0.1 0.2"/>
       </geometry>
     </collision>
-    <visual name="simple_gripper__visual">
+    <visual name="visual">
       <origin rpy="0 0 0" xyz="0  0  0.15"/>
       <geometry>
         <box size="0.1 0.1 0.2"/>
       </geometry>
     </visual>
   </link>
-  <gazebo>
-  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-    <robotNamespace>/MYROBOT</robotNamespace>
-  </plugin>
+
+  <gazebo reference="middle_finger_tip">
+      <mu1 value="5.0"/>
+      <kp value="5.0" />
+      <kd value="0.5" />
 </gazebo>
+  <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+          <robotNamespace>/</robotNamespace>
+   	  <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    <legacyModeNS>true</legacyModeNS>
+        </plugin>
+      </gazebo>
 </robot>

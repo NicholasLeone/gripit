@@ -1,0 +1,9 @@
+type: "position_controllers/JointGroupPositionController"
+joints:
+  - palm_left_finger
+  - palm_right_finger
+  - palm_middle_finger
+  - left_finger_tip
+  - right_finger_tip
+  - middle_finger_tip
+  - palm_riser
