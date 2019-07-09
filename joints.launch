@@ -1,32 +1,30 @@
 <launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">    
+  </include> 
+  <rosparam command="load"
+            file="$(find simple_gripper_description)/config/simple_gripper.yaml"/>
+
+  <rosparam command="load" file="$(find simple_gripper_description)/config/gazebo_ros_control_params.yaml"/>
+
+
 
   
 
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
 
- 
-    
-  </include>
-
- 
-
-  <rosparam command="load"
-            file="$(find simple_gripper_description)/config/joints.yaml"
-            ns="simple_gripper_joint_state_controller" />
- 
-  <rosparam command="load"
-            file="$(find simple_gripper_description)/config/simple_gripper.yaml"
-	    ns="simple_gripper_controller" />
-
-  <rosparam command="load"
-	file="$(find simple_gripper_description)/config/gazebo_ros_control_params.yaml"
-	ns="gazebo_ros_control" />
-
-  <node name="simple_gripper_controller_spawner" pkg="controller_manager" type="spawner"
-    args="simple_gripper_joint_state_controller
-	  simple_gripper_controller
-	  gazebo_ros_control
-          --shutdown-timeout 3"/>
+  <node name="simple_gripper_controller_spawner" 
+  pkg="controller_manager" 
+  type="spawner" 
+  respawn="false"
+  ns="/simple_gripper_controller"
+  args="palm_left_finger_position_controller
+joint_state_controller
+  palm_right_finger_position_controller
+  palm_middle_finger_position_controller
+  left_finger_tip_position_controller
+  right_finger_tip_position_controller
+  middle_finger_tip_position_controller
+  palm_riser_position_controller
+  --shutdown-timeout 3"/>
 
   <param name="robot_description"  textfile="$(find simple_gripper_description)/urdf/simple_gripper.urdf" />
 
@@ -36,5 +34,6 @@
 
   <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="30.0" />
+
 </node>
 </launch>

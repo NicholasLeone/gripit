@@ -5,7 +5,7 @@
     <child link="left_finger"/>
     <origin rpy="0       0      -0.78539" xyz="-0.00606  0.09393  0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
+    <limit effort="1000.0" lower="-0.8" upper="0.8" velocity="1000.0"/>
   </joint>
 
    <transmission name="palm_left_finger_trans">
@@ -14,7 +14,7 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
     <joint name="palm_left_finger">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
    </transmission>
 
@@ -23,16 +23,17 @@
     <child link="left_finger_tip"/>
     <origin rpy="0      0      2.35609" xyz="0.02545 0.31688 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
+    <limit effort="1000.0" lower="-0.8" upper="0.8" velocity="1000.0"/>
   </joint>
 
   <transmission name="left_finger_tip_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <actuator name="left_finger_tip_motor">
       <mechanicalReduction>1</mechanicalReduction>
+	  <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
     <joint name="left_finger_tip">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
    </transmission>
  
@@ -41,16 +42,17 @@
     <child link="right_finger"/>
     <origin rpy="0      0      0.78539" xyz="-0.00606 -0.09393  0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
+    <limit effort="1000.0" lower="-0.8" upper="0.8" velocity="1000.0"/>
   </joint>
 
   <transmission name="palm_right_finger_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <actuator name="palm_right_finger_motor">
       <mechanicalReduction>1</mechanicalReduction>
+	  <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
     <joint name="palm_right_finger">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
    </transmission>
 
@@ -59,16 +61,17 @@
     <child link="right_finger_tip"/>
     <origin rpy="0      0      0.78531" xyz="0.02546 -0.31687  0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
+    <limit effort="1000.0" lower="-0.8" upper="0.8" velocity="1000.0"/>
   </joint>
   
   <transmission name="right_finger_tip_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <actuator name="right_finger_tip_motor">
       <mechanicalReduction>1</mechanicalReduction>
+	  <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
     <joint name="right_finger_tip">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
    </transmission>
 
@@ -77,16 +80,17 @@
     <child link="middle_finger"/>
     <origin rpy="0     0.78539    0" xyz="0 -0.00606 0.09393"/>
     <axis xyz="0 1 0"/>
-    <limit effort="0.0" lower="-0.8" upper="0.670362" velocity="0.0"/>
+    <limit effort="1000.0" lower="-0.8" upper="0.670362" velocity="1000.0"/>
   </joint>
  
   <transmission name="palm_middle_finger_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <actuator name="palm_middle_finger_motor">
+	  <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
     <joint name="palm_middle_finger">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
    </transmission>
 
@@ -95,34 +99,43 @@
     <child link="middle_finger_tip"/>
     <origin rpy="0      0.78531     0" xyz="0.02546 0 0.21687"/>
     <axis xyz="0 1 0"/>
-    <limit effort="0.0" lower="-0.8" upper="0.8" velocity="0.0"/>
+    <limit effort="1000.0" lower="-0.8" upper="0.8" velocity="1000.0"/>
   </joint>
 
   <transmission name="middle_finger_tip_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <actuator name="middle_finger_tip_motor">
       <mechanicalReduction>1</mechanicalReduction>
+	  <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </actuator>
     <joint name="middle_finger_tip">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
    </transmission>
+
+  <joint name="fixed" type="fixed">
+	<parent link = "world"/>
+    <child link = "riser"/>
+    <origin rpy="0 0 0" xyz="0   0   -0.5"/>
+  </joint>
+  
 
   <joint name="palm_riser" type="prismatic">
     <parent link="riser"/>
     <child link="palm"/>
-    <origin rpy="0 0 0" xyz="0   0   0.05"/>
+    <origin rpy="0 0 0" xyz="0   0   0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="0.0" lower="0.0" upper="0.9" velocity="0.0"/>
+    <limit effort="1000.0" lower="-0.5" upper="2" velocity="10.0"/>
   </joint>
 
   <transmission name="palm_riser_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <actuator name="palm_riser_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
     <joint name="palm_riser">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
    </transmission>
 
@@ -139,13 +152,13 @@
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
     <collision name="collision">
-      <origin rpy="0 0 0" xyz="-0.15  0    0.5"/>
+      <origin rpy="0 0 0" xyz="-0.15  0    0"/>
       <geometry>
         <box size="0.05 0.05 1.0"/>
       </geometry>
     </collision>
     <visual name="visual">
-      <origin rpy="0 0 0" xyz="-0.15  0    0.5"/>
+      <origin rpy="0 0 0" xyz="-0.15  0    0"/>
       <geometry>
         <box size="0.05 0.05 1.0"/>
       </geometry>
@@ -322,9 +335,11 @@
       <kp value="5.0" />
       <kd value="0.5" />
 </gazebo>
+
+  <link name = "world"/>
   <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-          <robotNamespace>/</robotNamespace>
+          <robotNamespace>/simple_gripper_controller</robotNamespace>
    	  <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     <legacyModeNS>true</legacyModeNS>
         </plugin>

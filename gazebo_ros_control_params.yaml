@@ -1,4 +1,5 @@
 # gazebo_ros_control_params.yaml
+type: "/gazebo_ros_control/pid_gains"
 gazebo_ros_control:
   pid_gains:
     palm_left_finger: {p: 1.0, i: 0.0, d: 1.0}
