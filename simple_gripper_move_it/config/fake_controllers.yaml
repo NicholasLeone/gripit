@@ -1,0 +1,22 @@
+controller_list:
+  - name: fake_base_group_controller
+    joints:
+      - palm_riser
+  - name: fake_left_finger_group_controller
+    joints:
+      - palm_riser
+      - palm_left_finger
+      - left_finger_tip
+  - name: fake_right_finger_group_controller
+    joints:
+      - palm_riser
+      - palm_right_finger
+  - name: fake_middle_finger_group_controller
+    joints:
+      - palm_riser
+      - palm_middle_finger
+  - name: fake_finger_tips_group_controller
+    joints:
+      - left_finger_tip
+      - middle_finger_tip
+      - right_finger_tip
