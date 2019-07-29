@@ -1,0 +1,26 @@
+<launch>
+   <rosparam command="load" file="$(find gripbot_moveit)/config/joint_names.yaml"/>
+   
+   <include file="$(find gripbot_moveit)/launch/planning_context.launch">
+     <arg name="load_robot_description" value="true"/>
+   </include>
+   
+   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+     <param name="/use_gui" value="false"/>
+     <rosparam param="/source_list">[/gripbot/joint_states]</rosparam> 
+   </node>
+
+   <include file="$(find gripbot_moveit)/launch/move_group.launch">     
+   </include>
+
+   <include file="$(find gripbot_moveit)/launch/moveit_rviz.launch">
+     <arg name="config" value="true"/>
+   </include>
+
+  
+
+  <node name="joint_state_desired_publisher" pkg="topic_tools" type="relay" args="joint_states joint_states_desired" />
+
+
+
+</launch>

@@ -1,0 +1,47 @@
+gripbot:                    #useful if you use a namespace for the robot
+    # Publish joint states
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 50
+
+    gripbot_arm_controller:
+        type: position_controllers/JointTrajectoryController
+        joints:
+            - base_column_link
+            - girdle_visual_link
+            - arm_visual_link
+            - forearm_visual_link
+            - base_wrist_link        
+
+        constraints:
+            goal_time: 2.0
+            stopped_velocity_tolerance: 0.5
+            base_column_link:
+              trajectory: 0.1
+              goal: 0.5
+            girdle_visual_link: 
+              trajectory: 0.1
+              goal: 0.5
+            arm_visual_link:
+              trajectory: 0.1
+              goal: 0.5
+            forearm_visual_link:
+              trajectory: 0.1
+              goal: 0.5
+            base_wrist_link:
+              trajectory: 0.1
+              goal: 0.5
+
+        state_publish_rate: 25
+
+    panda_hand_controller:
+        type: effort_controllers/JointTrajectoryController
+        joints:
+            - panda_finger_joint1
+            - panda_finger_joint2
+
+        gains:
+            panda_finger_joint1: { p: 5, d: 3.0, i: 0, i_clamp: 1 }
+            panda_finger_joint2: { p: 5, d: 1.0, i: 0, i_clamp: 1 }
+
+        state_publish_rate: 25

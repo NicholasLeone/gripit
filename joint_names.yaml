@@ -1,0 +1,2 @@
+controller_joint_names: [base_column_link, girdle_visual_link, arm_visual_link, forearm_visual_link, base_wrist_link]
+      
